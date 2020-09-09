@@ -37,3 +37,28 @@ This means it reduced the size of the file with an average of 71.150.084 bytes p
 
 We can conclude that .zstd offers the most optimal time/compression ratio. 
 
+
+## Task 4.2
+
+To instatiate a computer in the Cloud I chose to use Terraform.  
+This is a cloud automation and orchestration platform, that is particularly convenient if you are managing a large structure of cloud instances, load balancers etc.  
+
+Setting up Terraform is quite easy. The website, [https://www.terraform.io](https://www.terraform.io), guides you right through it, and even has support for Windows. You download the file, set the path, and are ready for execution. 
+
+If you want to create a EC2 instance in AWS from a image AMI, you create a .tf file, with your AWS credentials, the type of instance you want to create and the AMI. The .tf file to create a resource with the name "example" could look something like this: 
+
+```
+provider "aws" {
+  access_key = "ACCESS_KEY"
+  secret_key = "SECRET_KEY"
+  region     = "eu-west-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-08935252a36e25f85"
+  instance_type = "t2.micro"
+}
+```
+
+To start terraform in your directory you type `terraform init` and to apply the .tf code you just wrote you type `terraform apply` in your terminal. After that we have succesfully launched the aws instances. I used Terraform v0.11.13 + provider.aws v2.7.0.
+
