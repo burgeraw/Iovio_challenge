@@ -1,8 +1,49 @@
 # Iovio Challenge
 
 ## Task 1
+```
+USE myDatabase
+
+1. 
+ALTER TABLE dbo.WorkflowStatusChange
+ADD UNIQUE (Id);
+ALTER TABLE dbo.WorkflowStatusChange
+ADD PRIMARY KEY (Id);
+
+2.
+CREATE TABLE dbo.StreamingObject (
+Id bigint IDENTITY(1,1) PRIMARY KEY );
+ALTER TABLE dbo.WorkflowStatusChange
+ADD FOREIGN KEY (streamingObject) REFERENCES dbo.StreamingObject(Id);
 
 
+3.
+CREATE TABLE dbo.StatusDefinition (
+Id bigint PRIMARY KEY);
+ALTER TABLE dbo.WorkflowStatusChange
+ADD FOREIGN KEY (fromStatus) REFERENCES dbo.StatusDefinition(Id);
+ALTER TABLE dbo.WorkflowStatusChange
+ADD FOREIGN KEY (toStatus) REFERENCES dbo.StatusDefinition(Id);
+
+
+4.
+CREATE TRIGGER statusDeleteTrigger
+    ON dbo.StatusDefinition
+    FOR DELETE
+AS
+    DELETE FROM dbo.WorkflowStatusChange
+    WHERE (fromStatus) IN(SELECT deleted.Id FROM deleted) OR
+	(toStatus) IN (SELECT deleted.Id FROM deleted)
+GO
+
+5.
+ALTER DATABASE myDatabase  
+COLLATE Latin1_General_100_CI_AI_SC_UTF8;  
+
+6. 
+ALTER TABLE dbo.WorkflowStatusChange 
+ADD messageFile xml;
+```
 
 ## Task 4.1
 
