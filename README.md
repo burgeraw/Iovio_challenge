@@ -1,5 +1,9 @@
 # Iovio Challenge
 
+## Task 1
+
+
+
 ## Task 4.1
 
 filesize: 1.9GB (1.915.176.884 bytes)  
@@ -45,7 +49,7 @@ This is a cloud automation and orchestration platform, that is particularly conv
 
 Setting up Terraform is quite easy. The website, [https://www.terraform.io](https://www.terraform.io), guides you right through it, and even has support for Windows. You download the file, set the path, and are ready for execution. 
 
-If you want to create a EC2 instance in AWS from a image AMI, you create a .tf file, with your AWS credentials, the type of instance you want to create and the AMI. The .tf file to create a resource with the name "example" could look something like this: 
+If you want to create a EC2 instance in AWS from a image AMI, you create a .tf file, which contains with your AWS credentials, the type of instance you want to create and the AMI. The .tf file to create a resource with the name "example" could look something like this: 
 
 ```
 provider "aws" {
@@ -60,5 +64,5 @@ resource "aws_instance" "example" {
 }
 ```
 
-To start terraform in your directory you type `terraform init` and to apply the .tf code you just wrote you type `terraform apply` in your terminal. After that we have succesfully launched the aws instances. I used Terraform v0.11.13 + provider.aws v2.7.0.
+To start terraform in your directory you type `terraform init` and to apply the .tf code you just wrote you type `terraform apply` in your terminal. After that we have succesfully launched the aws instance. I used Terraform v0.11.13 + provider.aws v2.7.0.
 
